@@ -1,18 +1,18 @@
 ---
 layout: workshop
 root: .
-venue: Euphoric State University
-address: 123 College Street, Euphoria
+venue: National Institutes of Health Library
+address: 
 country: United-States
-humandate: Feb 17-18, 2020
+humandate: January 8-9th, 2015
 humantime: 9:00 am - 4:30 pm
-startdate: 2020-06-17
-enddate: 2020-06-18
-latlng: 41.7901128,-87.6007318
+startdate: 2015-01-08
+enddate: 2015-01-09
+latlng: 
 registration: restricted
-instructor: ["Grace Hopper", "Alan Turing"]
-helper: ["John von Neumann"]
-contact: admin@software-carpentry.org
+instructor: ["Ian Munoz", "Daniel Chen"]
+helper: ["Sean Davis"]
+contact: imunoz@sesync.org
 #redirect: http://www.3rd.party.workshop.home.page.com
 #eventbrite: 00000000000
 lessons: ['R', 'Python', 'SQL', 'Git', 'Bash', 'VM']
@@ -21,18 +21,6 @@ lessons: ['R', 'Python', 'SQL', 'Git', 'Bash', 'VM']
     Edit the values in the parameter block above to be appropriate for your workshop.
     Please use three-letter month names for the 'humandate' field.
 -->
-
-<!-- Remove the block below. -->
-<div align="center">
-  <p><strong><em>
-      This page is a template for workshop home pages.
-      <br/>
-      Please see
-      <a href="//github.com/swcarpentry/bc">github.com/swcarpentry/bc</a>
-      for instructions on how to create
-      a repository for your workshop.
-  </em></strong></p>
-</div>
 
 <!--
     This block includes the Eventbrite registration widget if 'eventbrite' has been set in the header.
@@ -77,12 +65,6 @@ lessons: ['R', 'Python', 'SQL', 'Git', 'Bash', 'VM']
 -->
 {% if page.latlng %}
 <p>
-  <strong>Where:</strong>
-  {{ page.address }}.
-  Get directions with
-  <a href="//www.openstreetmap.org/?mlat={{ page.latlng | replace:',','&mlon=' }}&zoom=16">OpenStreetMap</a>
-  or
-  <a href="//maps.google.com/maps?q={{ page.latlng }}">Google Maps</a>.
 </p>
 {% endif %}
 
@@ -116,7 +98,7 @@ lessons: ['R', 'Python', 'SQL', 'Git', 'Bash', 'VM']
 <!--
     Edit this block to show the schedule for your workshop.
 -->
-<h2>Schedule</h2>
+<h2>Tentative Schedule</h2>
 
 <div class="row-fluid">
   <div class="span6">
