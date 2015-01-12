@@ -1,0 +1,332 @@
+Welcome to MoPad!
+
+This pad text is synchronized as you type, so that everyone viewing this page sees the same text.  This allows you to collaborate seamlessly on documents!
+
+Please be cognizant of whether you are using a public pad or private/team pad, and take appropriate precautions with data you post here!
+ Links:
+ http://ianamunoz.github.io/2015-01-08-NIH/
+ http://software-carpentry.org/lessons.html
+ 
+A style guide for R: http://adv-r.had.co.nz/Style.html
+A good resource for syntax, and one way people format their R code to make it
+more visually pleasing and readable
+
+For statisticians, we work with 'tidy' data.  A paper by Hadley about what that means:
+http://vita.had.co.nz/papers/tidy-data.pdf
+Hadley is the author of MANY R packages, ggplot2, stringr, plyr, dplyr, etc..
+He currently works at RStudio
+
+Rmarkdown Cheat sheet
+http://blog.rstudio.org/2014/08/01/the-r-markdown-cheat-sheet/
+http://rmarkdown.rstudio.com/html_document_format.html
+
+Good example on how to setup a project:
+http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1000424
+
+Cainlin Rivers's ebola dataset repo:
+https://github.com/cmrivers/ebola
+
+dplyr vignette (tutorial from hadley!)
+http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
+
+dan's github: https://github.com/chendaniely
+
+A Visual Explanation of SQL Joins: http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
+
+
+DAY 1 (19)
+
+Lesson 1:  Unix Shell 
+http://swcarpentry.github.io/shell-novice/
+
+Nano Cheat sheet:
+http://www.cheatography.com/hkellaway/cheat-sheets/nano-text-editor/
+
+Linux Command Line Cheat Sheet:
+http://www.cheatography.com/davechild/cheat-sheets/linux-command-line/pdf/
+
+
+How can I shorten my command line (bash) prompt?
+http://askubuntu.com/questions/145618/how-can-i-shorten-my-command-line-bash-prompt
+
+
+flags for ls
+$ ls -a   # lists all the hidden files
+
+you can chain flags by listing them together
+$ la -al
+
+copy the file to the parent directory
+$ cp coolfile.txt ..
+
+Directories that start with / are absolute - from the top of your computer's file directory
+Directories that start with ./ are relative - in relation to something else
+
+Help on Windows: use command --help
+On Mac/Unix: use man command
+
+Create a pipeline that gets the line count of all the .pdb files, sorts it, and returns lines 25-35
+
+$ wc *.pdb | sort -n | head -n 35 | tail -n 10 > output.txt
+
+This will create a 'Bash script' with our command in it
+$ echo "wc *.pdb | sort -n | head -n 35 | tail -n 10 > output.txt"  >> middle.sh
+
+To run our bash script we use:
+$ bash middle.sh 
+
+"$1"  will give you variables in the command line from your bash script
+
+.i.e.
+$ bash middle.sh 10 
+
+
+
+Part 2 -- Introduction to R 
+
+write a function 
+analyze 
+that creates these plots
+avg_day_inflammation <- apply(dat,2,mean)
+plot(avg_day_inflammation)
+
+max_day_inflammation <- apply(dat,2,max)
+plot(max_day_inflammation)
+
+min_day_inflammation <- apply(dat,2,min)
+plot(min_day_inflammation)
+
+
+myFirstScript.R
+
+# TODO read in the first input  "data/inflammation-01.csv"
+# Use analyze function to print the plots file
+# second command line argument should be the name of the 
+# plots
+
+#load my function
+source("scripts/functions.r")
+
+args <- commandArgs(trailingOnly = TRUE)
+#cat(args)
+#cat(args, sep = "\n")
+filenamein <- args[1]
+
+filenameout <- args[2]
+
+dat <- read.csv(filenamein , header=FALSE)
+
+analyze(filenameout, dat)
+
+##############
+scripts/functions.r
+
+##########################################
+analyze <- function(filename = NULL ,data){
+  #comments 
+  #TODO check to make first argument is a character string
+   if( is.null(filename)){
+    message("Give a filename")
+  } else {
+    
+  png(file = filename)
+  par(mfrow = c(2,2))
+  avg_day_inflammation <- apply(data,2,mean)
+  plot(avg_day_inflammation)
+  
+  max_day_inflammation <- apply(data,2,max)
+  plot(max_day_inflammation)
+  
+  min_day_inflammation <- apply(data,2,min)
+  plot(min_day_inflammation)
+  dev.off()
+  message(c(filename, " was saved"))
+  }
+}
+
+GGplot2 tutorial (on your own):
+http://watson.nci.nih.gov/~sdavis/tutorials/IntroToR/ggplot2.html
+
+Other tutorials of interest for R:
+http://watson.nci.nih.gov/~sdavis/tutorials/IntroToR/
+
+Upcoming classes on ggplot2 and making heatmaps in R:
+Jan 20: Heatmaps with Rstudio (class is full but you can get on waitlist): http://nihlibrary.nih.gov/resourcetraining/Pages/TrainingDescription.aspx?rsID=415&View=Class
+Jan 27: Heatmaps with R webinar: http://nihlibrary.nih.gov/resourcetraining/Pages/TrainingDescription.aspx?rsID=416&View=Class
+Feb 11: Intro to ggplot2: http://nihlibrary.nih.gov/resourcetraining/Pages/TrainingDescription.aspx?rsID=417&View=Class
+
+Bioconductor: Bioconductor provides tools for the analysis and comprehension of high-throughput genomic data. Bioconductor uses the R statistical programming language, and is open source and open development. It has two releases each year, 934 software packages, and an active user community. Bioconductor is also available as an Amazon Machine Image (AMI) and a series of Docker images.
+
+http://biocinductor.org/
+http://bioconductor.org/help/course-materials/
+
+
+Topics for Day 2 Afternoon
+
+
+SQL
+
+
+######################################################################
+DAY TWO -- Git
+
+
+$ git config --global user.name "Vlad Dracula"
+$ git config --global user.email "vlad@tran.sylvan.ia"
+$ git config --global color.ui "auto"
+$ git config --global core.editor "nano"
+
+Displays your current settings:
+git config --list
+
+git watches an entire directory
+
+so everything in the directory will be tracked (unless you tell git specifically to ignore it using git ignore)
+
+1. First you must add your files you want to track to the "Stage"
+2. Then you must actively commit your code from the "Stage" to your "repository"
+
+
+shows you where you are at
+$ git status 
+
+shows you the differences in all the tracked files
+$ git diff
+
+will show you the differences in a particular file
+$git diff <filename> 
+
+-----  are first version file
++++ new version  
+
+green text is new lines
+red is old lines
+
+Git is all line by line changes that it watches
+
+
+add the commit with a quick short message without using nano
+$git commit -m  ' put your message here '
+
+add all the files that you are tracking to the staging area
+$git add . 
+
+git has long and short sections for tracking messages
+
+This command will tell you the messages for the commits you have made
+$git log
+
+Gives you just one line of the of your log
+$git log --oneline 
+
+
+Rmarkdown Cheat sheet
+http://blog.rstudio.org/2014/08/01/the-r-markdown-cheat-sheet/
+
+
+Code that is in the staging  will not show you diffed items
+This command will show you the differences in the files that are in the staging area
+$git diff --staged 
+
+
+to commit one file 
+git add <filename> 
+
+you could do a wildcard
+git add *.txt 
+
+will show diff from current head to head -1 commit
+$git diff HEAD~1 <filename>
+
+Using the actual "hash" for a particular commit you can look at the changes from a particular commit 
+$git diff 2fe1c89 thesis.rmd
+
+
+git ignore will ignore files and not ever try to track them
+.gitignore
+
+This will checkout the last commit
+git checkout <hash> <filename>
+
+Puts the file that checked out one back and then you can revert your change
+
+Will move your directory back to where "HEAD" was pointing at
+$git reset --hard
+
+will remove the file from being tracked 
+git rm --cached <filename> 
+
+adding 
+~*
+*.html
+to the .gitignore will ignore all the html files and all the files starting with ~
+
+Ways to recover a deleted file or files
+git reset --hard
+
+git checkout -- <filename>
+
+skip the staging process 
+git rm
+
+Add a remote
+$git remote add origin https://
+$git remote add <name_of_remote> <url>
+
+show the remotes (verbose)
+git remote -v     
+
+
+fetch, pull, push are the key words for remotes
+
+
+to send data to the remote repository
+$git push -u <remote_name> <branch_name>
+-u is a force upstream ...
+
+get the data from the internet repository
+$git pull -u <remote_name> <branch_name>
+$git pull -u origin master
+
+Good practice is to pull first so that you get all remote changes first
+
+
+
+##########################################################
+
+SQL Databases
+
+ACID: 
+Atomic
+Consistent
+Isolated
+Durable
+
+Similar to a repo: a set of files you can request info from, and you can only get/change data if you ask correctly.  Prevents accidental deletion/moving of data
+
+Available SQLite commands: http://www.sqlite.org/cli.html
+
+
+
+SELECT
+FROM
+DISTINCT
+LIMIT
+
+WHERE species IN ("DM", "DS")
+
+ORDER BY taxa ASC/DESC
+
+SELECT species, COUNT(*) AS speciestotal FROM surveys
+GROUP BY species
+
+SELECT * 
+FROM surveys
+JOIN species
+ON surveys.species = species.species_id;
+
+A Visual Explanation of SQL Joins: http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
+
+
+
+
